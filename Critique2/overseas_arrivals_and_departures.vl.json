@@ -1,0 +1,19 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {"text": "Total Overseas Arrivals and Departures"},
+  "data": {
+    "url": "https://raw.githubusercontent.com/BradenShiewMonash/FIT3179/refs/heads/main/Critique2/overseas_arrivals_and_departures.csv"
+  },
+  "transform": [{"fold": ["arrivals", "departures"], "as": ["type", "value"]}],
+  "mark": "line",
+  "encoding": {
+    "x": {"field": "time", "type": "ordinal", "axis": {"title": "Time"}},
+    "y": {
+      "field": "value",
+      "type": "quantitative",
+      "axis": {"title": "Number (millions)"}
+    },
+    "color": {"field": "type", "type": "nominal", "legend": {"title": "Type"}}
+  },
+  "config": {}
+}
