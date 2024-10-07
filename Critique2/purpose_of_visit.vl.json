@@ -1,0 +1,22 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {"text": "Purpose of Visit 2024"},
+  "data": {
+    "url": "https://raw.githubusercontent.com/BradenShiewMonash/FIT3179/refs/heads/main/Critique2/purpose_of_visit.csv"
+  },
+  "mark": "arc",
+  "encoding": {
+    "theta": {"field": "percentage", "type": "quantitative"},
+    "color": {
+      "field": "purpose",
+      "type": "nominal",
+      "legend": {"title": "Purpose of Visit"}
+    },
+    "tooltip": [
+      {"field": "purpose", "type": "nominal", "title": "Purpose"},
+      {"field": "percentage", "type": "quantitative", "title": "Percentage (%)"}
+    ]
+  },
+  "view": {"stroke": null},
+  "config": {}
+}
