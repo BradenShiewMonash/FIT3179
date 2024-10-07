@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Visualization 2</title>
+
+  <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+</head>
+<body>
+
+  <h1>Tourism in Australia</h1>
+
+  <p>
+    Travelling, most people do it every day. While there has been a major decline in tourism due to the pandemic, the world is steadily 
+    coming around to travelling once again. Australia, is no exception to this. This visualisation aims to provide insights into the 
+    visitors to Australia and the reasons behind their travels.
+  </p>
+
+  <h2>Total Overseas Arrivals and Departures</h2>
+  <p>
+    Just how many people are travelling Australia? We can see that over a million people arrive in Australia from overseas almost 
+    every month.
+  </p>
+  <div id="arrivals_departures"></div>
+
+  <h2>Purpose of Travel</h2>
+  <p>
+    Visitors travel for various reasons such as holidays, business, education or visiting friends and relatives (VFR). Below is a chart 
+    displaying the percentage difference of the purpose of visiting Australia as of June 2024.
+  </p>
+  <div id="purpose_of_visit"></div>
+
+
+  <script type="text/javascript">
+    vegaEmbed("#arrivals_departures", {
+      "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+      "title": {"text": "Total Overseas Arrivals and Departures"},
+      "data": {
+        "url": "https://raw.githubusercontent.com/BradenShiewMonash/FIT3179/refs/heads/main/Critique2/overseas_arrivals_and_departures.csv",
+        "format": {"type": "csv"}
+      },
+      "transform": [{"fold": ["arrivals", "departures"], "as": ["type", "value"]}],
+      "mark": "line",
+      "encoding": {
+        "x": {"field": "time", "type": "ordinal", "axis": {"title": "Time"}},
+        "y": {
+          "field": "value",
+          "type": "quantitative",
+          "axis": {"title": "Number (millions)"}
+        },
+        "color": {"field": "type", "type": "nominal", "legend": {"title": "Type"}},
+        "tooltip": [
+          {"field": "time", "type": "ordinal", "title": "Time"},
+          {"field": "type", "type": "nominal", "title": "Type"},
+          {"field": "value", "type": "quantitative", "title": "Number (millions)"}
+        ]
+      }
+    });
+
+    vegaEmbed("#purpose_of_visit", {
+      "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+      "title": {"text": "Purpose of Visit 2024"},
+      "data": {
+        "url": "https://raw.githubusercontent.com/BradenShiewMonash/FIT3179/refs/heads/main/Critique2/purpose_of_visit.csv",
+        "format": {"type": "csv"}
+      },
+      "mark": "arc",
+      "encoding": {
+        "theta": {"field": "percentage", "type": "quantitative"},
+        "color": {"field": "purpose", "type": "nominal", "legend": {"title": "Purpose of Visit"}},
+        "tooltip": [
+          {"field": "purpose", "type": "nominal", "title": "Purpose"},
+          {"field": "percentage", "type": "quantitative", "title": "Percentage (%)"}
+        ]
+      },
+      "view": {"stroke": null}
+    });
+  </script>
+</body>
+</html>
