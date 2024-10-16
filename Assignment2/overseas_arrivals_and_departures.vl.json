@@ -1,0 +1,51 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {"text": "Total Overseas Arrivals and Departures"},
+  "data": {
+    "url": "https://raw.githubusercontent.com/BradenShiewMonash/FIT3179/refs/heads/main/Assignment2/overseas_arrivals_and_departures.csv"
+  },
+  "vconcat": [
+    {
+      "width": 520,
+      "height": 240,
+      "mark": "line",
+      "encoding": {
+        "x": {
+          "field": "time",
+          "type": "ordinal",
+          "scale": {"domain": {"param": "brush"}},
+          "axis": {"title": "Time"}
+        },
+        "y": {
+          "field": "value",
+          "type": "quantitative",
+          "axis": {"title": "Number (millions)"}
+        },
+        "color": {
+          "field": "type",
+          "type": "nominal",
+          "legend": {"title": "Type"}
+        }
+      }
+    },
+    {
+      "width": 520,
+      "height": 80,
+      "mark": "line",
+      "encoding": {
+        "x": {
+          "field": "time",
+          "type": "ordinal",
+          "axis": {"title": "Brush Time Range"}
+        },
+        "y": {"field": "value", "type": "quantitative", "axis": {"title": ""}},
+        "color": {"field": "type", "type": "nominal"}
+      },
+      "params": [
+        {"name": "brush", "select": {"type": "interval", "encodings": ["x"]}}
+      ]
+    }
+  ],
+  "transform": [{"fold": ["arrivals", "departures"], "as": ["type", "value"]}],
+  "config": {}
+}

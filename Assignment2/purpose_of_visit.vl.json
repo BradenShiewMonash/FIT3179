@@ -1,0 +1,62 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {"text": "Purpose of Visit 2024"},
+  "data": {
+    "url": "https://raw.githubusercontent.com/BradenShiewMonash/FIT3179/refs/heads/main/Assignment2/purpose_of_visit.csv"
+  },
+  "layer": [
+    {
+      "mark": "arc",
+      "encoding": {
+        "theta": {"field": "percentage", "type": "quantitative"},
+        "color": {
+          "field": "purpose",
+          "type": "nominal",
+          "legend": {"title": "Purpose of Visit"}
+        },
+        "tooltip": [
+          {"field": "purpose", "type": "nominal", "title": "Purpose"},
+          {
+            "field": "percentage",
+            "type": "quantitative",
+            "title": "Percentage (%)"
+          }
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "align": "center",
+        "baseline": "middle",
+        "dy": -10,
+        "fontSize": 14,
+        "fontWeight": "bold"
+      },
+      "encoding": {
+        "text": {"value": "41.6%"},
+        "x": {"value": 125},
+        "y": {"value": 150},
+        "color": {"value": "black"}
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "align": "center",
+        "baseline": "middle",
+        "dy": -10,
+        "fontSize": 14,
+        "fontWeight": "bold"
+      },
+      "encoding": {
+        "text": {"value": "34.3%"},
+        "x": {"value": 55},
+        "y": {"value": 80},
+        "color": {"value": "black"}
+      }
+    }
+  ],
+  "view": {"stroke": null},
+  "config": {}
+}
