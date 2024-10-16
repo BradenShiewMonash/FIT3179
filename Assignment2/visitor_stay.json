@@ -1,0 +1,55 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": "Short-term Visitor Arrivals by State",
+  "width": 800,
+  "height": 400,
+  "projection": {"type": "mercator"},
+  "data": {
+    "url": "https://raw.githubusercontent.com/BradenShiewMonash/FIT3179/refs/heads/main/Assignment2/ne_50m (AUS).json",
+    "format": {"type": "topojson", "feature": "ne_50m_admin_1_states_provinces"}
+  },
+  "transform": [
+    {
+      "lookup": "properties.name",
+      "from": {
+        "data": {
+          "url": "https://raw.githubusercontent.com/BradenShiewMonash/FIT3179/refs/heads/main/Assignment2/visitor_stay.csv"
+        },
+        "key": "Location",
+        "fields": [
+          "Visitors_2019",
+          "Visitors_2022",
+          "Visitors_2023",
+          "Visitors_2024"
+        ]
+      }
+    },
+    {"calculate": "datum['Visitors_' + year]", "as": "Visitors"}
+  ],
+  "params": [
+    {
+      "name": "year",
+      "value": "2024",
+      "bind": {
+        "input": "select",
+        "options": ["2019", "2022", "2023", "2024"],
+        "labels": ["2019", "2022", "2023", "2024"],
+        "name": "Year: "
+      }
+    }
+  ],
+  "mark": {"type": "geoshape", "stroke": "black", "strokeWidth": 1},
+  "encoding": {
+    "color": {
+      "field": "Visitors",
+      "type": "quantitative",
+      "scale": {"scheme": "blues"},
+      "legend": {"title": "Visitors"}
+    },
+    "tooltip": [
+      {"field": "properties.name", "type": "nominal", "title": "State"},
+      {"field": "Visitors", "type": "quantitative", "title": "Visitors"}
+    ]
+  },
+  "config": {}
+}
