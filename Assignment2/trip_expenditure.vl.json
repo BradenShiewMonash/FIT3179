@@ -1,0 +1,25 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": "Total Trip Expenditure of Visitors (2010-2024)",
+  "data": {
+    "url": "https://raw.githubusercontent.com/BradenShiewMonash/FIT3179/refs/heads/main/Assignment2/trip_expenditure.csv"
+  },
+  "mark": "bar",
+  "encoding": {
+    "x": {"field": "year", "type": "ordinal", "axis": {"title": "Year"}},
+    "y": {
+      "field": "A$ (b)",
+      "type": "quantitative",
+      "axis": {"title": "Expenditure (A$ billions)"}
+    },
+    "tooltip": [
+      {"field": "year", "type": "ordinal", "title": "Financial Year"},
+      {
+        "field": "A$ (b)",
+        "type": "quantitative",
+        "title": "Expenditure (A$ billions)"
+      }
+    ]
+  },
+  "config": {}
+}
