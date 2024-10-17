@@ -12,6 +12,17 @@
         "color": {
           "field": "purpose",
           "type": "nominal",
+          "scale": {
+            "range": [
+              "#E69F00",
+              "#56B4E9",
+              "#009E73",
+              "#F0E442",
+              "#0072B2",
+              "#D55E00",
+              "#CC79A7"
+            ]
+          },
           "legend": {"title": "Purpose of Visit"}
         },
         "tooltip": [
