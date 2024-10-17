@@ -36,7 +36,7 @@
         "x": {
           "field": "time",
           "type": "ordinal",
-          "axis": {"title": "Brush Time Range"}
+          "axis": {"title": "Brush Time Range", "labels": false}
         },
         "y": {"field": "value", "type": "quantitative", "axis": {"title": ""}},
         "color": {"field": "type", "type": "nominal"}
