@@ -1,0 +1,35 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Change in Tourism Job Sectors 2024",
+    "subtitle": "2024 compared with 2019"
+  },
+  "width": 600,
+  "height": 400,
+  "data": {
+    "url": "https://raw.githubusercontent.com/BradenShiewMonash/FIT3179/refs/heads/main/Assignment2/jobs.csv"
+  },
+  "mark": "bar",
+  "encoding": {
+    "y": {
+      "field": "Jobs",
+      "type": "nominal",
+      "sort": "-x",
+      "axis": {"title": ""}
+    },
+    "x": {
+      "field": "Change (Thousands)",
+      "type": "quantitative",
+      "axis": {"title": "Change (Thousands)"}
+    },
+    "tooltip": [
+      {"field": "Jobs", "type": "nominal", "title": "Sector"},
+      {
+        "field": "Change (Thousands)",
+        "type": "quantitative",
+        "title": "Change (Thousands)"
+      }
+    ]
+  },
+  "config": {}
+}
