@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tourism in Australia</title>
+  
+  <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+  
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Lora&display=swap">
+
+  <style>
+    body {
+      font-family: 'Lora', serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f8f9fa;
+    }
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 3rem;
+      text-align: center;
+      margin-top: 20px;
+    }
+    .text-block {
+      border: 2px solid #dee2e6;
+      padding: 15px;
+      margin: 20px auto;
+      width: 80%;
+      background-color: #ffffff;
+      box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
+    }
+    .text-block h2 {
+      font-size: 1.75rem;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+    .text-block p {
+      font-size: 1rem;
+      line-height: 1.5;
+      margin-bottom: 0;
+    }
+    .chart-container {
+      margin: 20px auto;
+      width: 80%;
+      text-align: center;
+    }
+    #visitor_stay, #purpose_of_visit {
+      display: inline-block;
+      width: 48%;
+      vertical-align: top;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Tourism in Australia</h1>
+
+  <div class="text-block">
+    <h2>Introduction</h2>
+    <p>
+      Travelling, most people do it every day. While there has been a major decline in tourism due to the pandemic, the world is steadily 
+      coming around to travelling once again. Australia is no exception. This visualization aims to provide insights into the visitors 
+      to Australia, the reasons behind their travels, and how this has impacted the economy.
+    </p>
+  </div>
+
+  <br><br><br>
+
+  <div class="text-block">
+    <h2>Recovering from the Pandemic</h2>
+    <p>
+      It is no news to anyone that the pandemic and subsequent lockdowns put a major dent in tourism. From 2020 all the way to 2022, 
+      there was practically no foreigners travelling in Australia. It was not until March 2022 when the world started being open to 
+      travelling once again. While the number of people visiting Australia is not as big as it was when it peaked in January 2020, it 
+      is rapidly returning to its former glory.
+    </p>
+  </div>
+
+  <div class="chart-container">
+    <div id="arrivals_departures"></div>
+  </div>
+
+  <br><br><br>
+
+  <div class="text-block">
+    <h2>Where and Why Tourists Visit</h2>
+    <p>
+      Just what are the popular regions and why do tourists visit? From 2019 to 2024, Queensland, Victoria and New South Wales remain 
+      the top three largest points of interest. As to why people travel, the two most common reasons are for holiday, and visiting 
+      friends and reltives.
+    </p>
+  </div>
+
+  <div class="chart-container">
+    <div id="visitor_stay"></div>
+    <div id="purpose_of_visit"></div>
+  </div>
+
+  <br><br><br>
+
+  <div class="text-block">
+    <h2>Lots to Spend</h2>
+    <p>
+      Naturally, as there are many tourists, the amount of money being spent is no short figure. What is surprising, however, is the 
+      fact that 2024 has seen the largest amount of spendings (A$47.77 billion) in the last 14 years. Perhaps this is a sign that 
+      people cannot wait to get out there and have more fun, especially after being cooped indoors for so long.
+    </p>
+  </div>
+
+  <div class="chart-container">
+    <div id="trip_expenditure"></div>
+  </div>
+
+  <br><br><br>
+
+  <div class="text-block">
+    <h2>Tourism-Related Jobs</h2>
+    <p>
+      It is not all sunshine and rainbows however. In the job department, a majority of sectors have seen significant decrease when 
+      comparing 2024 to 2019. While this is to be expected, one can only hope that this will take a turn for the better for the sake of 
+      all those that have lost their jobs.
+    </p>
+  </div>
+
+  <div class="chart-container">
+    <div id="jobs"></div>
+  </div>
+
+  <br><br><br>
+  
+  <div class="text-block">
+    <h2>Conclusion</h2>
+    <p>
+    While the pandemic has certainly left a horrible mark in tourism, the world is steadily welcoming travelling back into its life. 
+    People are gradually warming up to returning to what was normal a few years ago. In fact, they might even exceed previous numbers. 
+    </p>
+  </div>
+
+  <script type="text/javascript">
+    vegaEmbed("#arrivals_departures", {
+      "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {"text": "Total Overseas Arrivals and Departures"},
+  "data": {
+    "url": "https://raw.githubusercontent.com/BradenShiewMonash/FIT3179/refs/heads/main/Assignment2/overseas_arrivals_and_departures.csv"
+  },
+  "vconcat": [
+    {
+      "width": 1080,
+      "height": 240,
+      "mark": "line",
+      "encoding": {
+        "x": {
+          "field": "time",
+          "type": "ordinal",
+          "scale": {"domain": {"param": "brush"}},
+          "axis": {"title": "Time"}
+        },
+        "y": {
+          "field": "value",
+          "type": "quantitative",
+          "axis": {"title": "Number (millions)"}
+        },
+        "color": {
+          "field": "type",
+          "type": "nominal",
+          "legend": {"title": "Type"}
+        }
+      }
+    },
+    {
+      "width": 1080,
+      "height": 80,
+      "mark": "line",
+      "encoding": {
+        "x": {
+          "field": "time",
+          "type": "ordinal",
+          "axis": {"title": "Brush Time Range", "labels": false}
+        },
+        "y": {"field": "value", "type": "quantitative", "axis": {"title": ""}},
+        "color": {"field": "type", "type": "nominal"}
+      },
+      "params": [
+        {"name": "brush", "select": {"type": "interval", "encodings": ["x"]}}
+      ]
+    }
+  ],
+  "transform": [{"fold": ["arrivals", "departures"], "as": ["type", "value"]}]
+    });
+
+    vegaEmbed("#visitor_stay", {
+      "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": "Short-term Visitor Arrivals by State",
+  "width": 600,
+  "height": 300,
+  "projection": {"type": "mercator"},
+  "data": {
+    "url": "https://raw.githubusercontent.com/BradenShiewMonash/FIT3179/refs/heads/main/Assignment2/ne_50m (AUS).json",
+    "format": {"type": "topojson", "feature": "ne_50m_admin_1_states_provinces"}
+  },
+  "transform": [
+    {
+      "lookup": "properties.name",
+      "from": {
+        "data": {
+          "url": "https://raw.githubusercontent.com/BradenShiewMonash/FIT3179/refs/heads/main/Assignment2/visitor_stay.csv"
+        },
+        "key": "Location",
+        "fields": [
+          "Visitors_2019",
+          "Visitors_2022",
+          "Visitors_2023",
+          "Visitors_2024"
+        ]
+      }
+    },
+    {"calculate": "datum['Visitors_' + year]", "as": "Visitors"}
+  ],
+  "params": [
+    {
+      "name": "year",
+      "value": "2024",
+      "bind": {
+        "input": "select",
+        "options": ["2019", "2022", "2023", "2024"],
+        "labels": ["2019", "2022", "2023", "2024"],
+        "name": "Year: "
+      }
+    }
+  ],
+  "mark": {"type": "geoshape", "stroke": "black", "strokeWidth": 1},
+  "encoding": {
+    "color": {
+      "field": "Visitors",
+      "type": "quantitative",
+      "scale": {"scheme": "blues"},
+      "legend": {"title": "Visitors"}
+    },
+    "tooltip": [
+      {"field": "properties.name", "type": "nominal", "title": "State"},
+      {"field": "Visitors", "type": "quantitative", "title": "Visitors"}
+    ]
+  }
+    });
+
+    vegaEmbed("#purpose_of_visit", {
+      "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {"text": "Purpose of Visit 2024"},
+  "data": {
+    "url": "https://raw.githubusercontent.com/BradenShiewMonash/FIT3179/refs/heads/main/Assignment2/purpose_of_visit.csv"
+  },
+  "layer": [
+    {
+      "mark": "arc",
+      "encoding": {
+        "theta": {"field": "percentage", "type": "quantitative"},
+        "color": {
+          "field": "purpose",
+          "type": "nominal",
+          "scale": {
+            "range": [
+              "#E69F00",
+              "#56B4E9",
+              "#009E73",
+              "#F0E442",
+              "#0072B2",
+              "#D55E00",
+              "#CC79A7"
+            ]
+          },
+          "legend": {"title": "Purpose of Visit"}
+        },
+        "tooltip": [
+          {"field": "purpose", "type": "nominal", "title": "Purpose"},
+          {
+            "field": "percentage",
+            "type": "quantitative",
+            "title": "Percentage (%)"
+          }
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "align": "center",
+        "baseline": "middle",
+        "dy": -10,
+        "fontSize": 14,
+        "fontWeight": "bold"
+      },
+      "encoding": {
+        "text": {"value": "41.6%"},
+        "x": {"value": 125},
+        "y": {"value": 150},
+        "color": {"value": "black"}
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "align": "center",
+        "baseline": "middle",
+        "dy": -10,
+        "fontSize": 14,
+        "fontWeight": "bold"
+      },
+      "encoding": {
+        "text": {"value": "34.3%"},
+        "x": {"value": 55},
+        "y": {"value": 80},
+        "color": {"value": "black"}
+      }
+    }
+  ],
+  "view": {"stroke": null}
+    });
+
+    vegaEmbed("#trip_expenditure", {
+      "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Total Trip Expenditure of Visitors (2010-2024)",
+    "subtitle": "Financial Year"
+  },
+  "width": 1150,
+  "height": 400,
+  "data": {
+    "url": "https://raw.githubusercontent.com/BradenShiewMonash/FIT3179/refs/heads/main/Assignment2/trip_expenditure.csv"
+  },
+  "mark": {"type": "line", "point": true},
+  "encoding": {
+    "x": {"field": "year", "type": "ordinal", "axis": {"title": "Year"}},
+    "y": {
+      "field": "A$ (b)",
+      "type": "quantitative",
+      "axis": {"title": "Expenditure (A$ billions)"}
+    },
+    "tooltip": [
+      {"field": "year", "type": "ordinal", "title": "Financial Year"},
+      {
+        "field": "A$ (b)",
+        "type": "quantitative",
+        "title": "Expenditure (A$ billions)"
+      }
+    ]
+  }
+    });
+
+    vegaEmbed("#jobs", {
+      "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Change in Tourism Job Sectors 2024",
+    "subtitle": "2024 compared with 2019"
+  },
+  "width": 1100,
+  "height": 400,
+  "data": {
+    "url": "https://raw.githubusercontent.com/BradenShiewMonash/FIT3179/refs/heads/main/Assignment2/jobs.csv"
+  },
+  "mark": "bar",
+  "encoding": {
+    "y": {
+      "field": "Jobs",
+      "type": "nominal",
+      "sort": "-x",
+      "axis": {"title": ""}
+    },
+    "x": {
+      "field": "Change (Thousands)",
+      "type": "quantitative",
+      "axis": {"title": "Change (Thousands)"}
+    },
+    "tooltip": [
+      {"field": "Jobs", "type": "nominal", "title": "Sector"},
+      {
+        "field": "Change (Thousands)",
+        "type": "quantitative",
+        "title": "Change (Thousands)"
+      }
+    ]
+  }
+    });
+  </script>
+
+</body>
+</html>
